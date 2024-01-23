@@ -1,0 +1,13 @@
+.room-items {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 640px;
+    height: 640px;
+    padding: 90px;
+    background: url("../img/wood_only_arena.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 125px auto;
+}

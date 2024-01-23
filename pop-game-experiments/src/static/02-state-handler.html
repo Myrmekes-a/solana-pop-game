@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+
+        <style>
+            body {
+                font-family: Tahoma, Geneva, sans-serif;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <!-- colyseus.js client -->
+        <script
+            type="text/javascript"
+            src="https://unpkg.com/colyseus.js@^0.14.0/dist/colyseus.js"
+        ></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"
+        ></script>
+
+        <style type="text/css">
+            .game-state {
+                position: absolute;
+                height: 100px;
+                width: 100px;
+                left: 1200px;
+                top: 400px;
+                background-color: lightblue;
+                text-align: center;
+            }
+            .dart {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                padding-top: 0px;
+                box-sizing: border-box;
+                left: 0;
+                top: 0;
+            }
+            .balloon {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                padding-top: 0px;
+                box-sizing: border-box;
+                left: 0;
+                top: 0;
+                border-radius: 50px;
+            }
+
+            .top-wall {
+                width: 1000px;
+                height: 10px;
+                left: 10px;
+                top: 0px;
+                position: absolute;
+                background-color: gray;
+            }
+
+            .right-wall {
+                width: 10px;
+                height: 1000px;
+                left: 1010px;
+                top: 10px;
+                position: absolute;
+                background-color: gray;
+                border: 1px solid black;
+            }
+            .bottom-wall {
+                width: 1000px;
+                height: 10px;
+                left: 10px;
+                top: 1010px;
+                position: absolute;
+                background-color: gray;
+            }
+
+            .left-wall {
+                width: 10px;
+                height: 1000px;
+                left: 0px;
+                top: 10px;
+                position: absolute;
+                background-color: gray;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            <a href="https://github.com/colyseus/colyseus-examples"
+                ><img
+                    src="https://cdn.jsdelivr.net/gh/colyseus/colyseus@master/media/header.png"
+                    height="100"
+                    alt="colyseus"
+            /></a>
+        </h1>
+
+        <p>
+            This example shows how to use custom data structures in your room's
+            state.
+        </p>
+
+        <strong>commands</strong><br />
+
+        <div class="top-wall">top wall</div>
+        <div class="right-wall">right wall</div>
+        <div class="bottom-wall">bottom wall</div>
+        <div class="left-wall">left wall</div>
+        <div class="game-state">
+            <div style="margin-top: 50px" class="game-info"></div>
+        </div>
+
+        <button onclick="up()">up</button>
+        <button onclick="down()">down</button>
+        <br />
+        <button onclick="left()">left</button>
+        <button onclick="right()">right</button>
+
+        <button class="btn btn-primary" onclick="sendMessage()">
+            Send Message
+        </button>
+
+        <script>
+            var host = window.document.location.host.replace(/:.*/, "");
+
+            var client = new Colyseus.Client(
+                location.protocol.replace("http", "ws") +
+                    "//" +
+                    host +
+                    (location.port ? ":" + location.port : "")
+            );
+            var room;
+                
+            client.joinOrCreate("state_handler").then((room_instance) => {
+                room = room_instance;
+
+                var dart;
+                var players = {};
+                var balloons = {}    
+
+                var colors = [
+                    "red",
+                    "green",
+                    "yellow",
+                    "blue",
+                    "cyan",
+                    "magenta",
+                ];
+
+                room.state.darts.onAdd = (dart) => {
+                    // console.log("DART", dart);
+
+                    var dom = document.createElement("div");
+                    dom.className = "dart";
+                    // dom.style.left = dart.x + "px";
+                    // dom.style.top = dart.y + "px";
+                    dom.style.background =
+                        colors[Math.floor(Math.random() * colors.length)];
+                    dom.innerText = "Dart";
+
+                    dart.onChange = function (changes) {
+                        dom.style.transition = "0.05s all ";
+                        dom.style.transform = `translate(${dart.x - 25}px, ${
+                            dart.y - 25
+                        }px)`;
+                        dom.style.transformOrigin =
+                            "transform-origin: top left;";
+
+                        // console.log(player.angle)
+                    };
+
+                    document.body.appendChild(dom);
+                };
+
+                room.state.onChange = (changes) => {
+                    changes.map((change) => {
+                        if (change.field == "currentGameState") {
+                            const gameStateDiv =
+                                document.querySelector(".game-info");
+                            gameStateDiv.innerText = change.value;
+                        }
+
+                        if (change.field == "winningPlayer") {
+                            $(".modal-body").text(change.value + " wins!!");
+                            $("#winnerModal").modal("show");
+                        }
+                    });
+                };
+
+                // listen to patches coming from the server
+                room.state.balloons.onAdd = function (balloon, sessionId) {
+                    console.log("Adding Balloon!")
+
+                    var dom = document.createElement("div");
+                    dom.className = "balloon";
+                    // dom.style.left = player.x + "px";
+                    // dom.style.top = player.y + "px";
+                    dom.style.background =
+                        colors[Math.floor(Math.random() * colors.length)];
+                    dom.innerText = "balloon " + balloon.label;
+
+                    balloon.onChange = function (changes) {
+                        // console.log("balloon change")
+                        // dom.style.left = player.x - 50 + "px";
+                        // dom.style.top = player.y - 50 + "px";
+                        dom.style.transition = "0.05s all ";
+                        console.log("Translate", `translate(${balloon.x - 50}px, ${
+                            balloon.y - 50
+                        }px)`)
+                        dom.style.transform = `translate(${balloon.x - 50}px, ${
+                            balloon.y - 50
+                        }px)`;
+
+                        dom.style.display = balloon.popped
+                            ? "none"
+                            : dom.style.display;
+                    };
+
+                    balloons[balloon.label] = dom;
+                    document.body.appendChild(dom);
+                };
+
+                room.state.balloons.onRemove = function (player, sessionId) {
+                    document.body.removeChild(players[sessionId]);
+                    delete players[sessionId];
+                };
+
+                room.onMessage("hello", (message) => {
+                    console.log(message);
+                });
+
+                room.onMessage("deposit-processed", (message) => {
+                    console.log("Deposit Processed", message);
+                });
+
+                room.onMessage("debit-processed", (message) => {
+                    console.log("debit processed");
+                    console.log(message);
+                });
+
+                window.addEventListener("keydown", function (e) {
+                    if (e.which === 38) {
+                        up();
+                    } else if (e.which === 39) {
+                        right();
+                    } else if (e.which === 40) {
+                        down();
+                    } else if (e.which === 37) {
+                        left();
+                    }
+                });
+
+                console.log(room.state.currentGameState);
+                console.log(room.state.players);
+            });
+
+            function up() {
+                room.send("move", { y: -1 });
+            }
+
+            function right() {
+                room.send("move", { x: 1 });
+            }
+
+            function down() {
+                room.send("move", { y: 1 });
+            }
+
+            function left() {
+                room.send("move", { x: -1 });
+            }
+
+            async function sendMessage() {
+                await room.send("credit", { jwt: "test" });
+            }
+        </script>
+
+        <div
+            class="modal fade"
+            id="winnerModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                            Modal title
+                        </h5>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,1 @@
+mysql://popadmin:ch16YMCMB*ZZLE@138.197.8.145:3306/pop

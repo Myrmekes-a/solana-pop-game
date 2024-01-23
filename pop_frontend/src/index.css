@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+a:hover {
+    font-size: inherit;
+    color: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: "Roboto Mono", monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden !important;
+    background: url("./assets/img/arena.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}

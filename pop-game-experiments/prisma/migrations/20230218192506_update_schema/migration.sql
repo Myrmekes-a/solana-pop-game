@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `Credit` ADD COLUMN `gameId` INTEGER NULL;
+
+-- AddForeignKey
+ALTER TABLE `Credit` ADD CONSTRAINT `Credit_gameId_fkey` FOREIGN KEY (`gameId`) REFERENCES `Game`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

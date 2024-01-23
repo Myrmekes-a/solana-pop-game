@@ -1,0 +1,130 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String     @id @default(uuid())
+  wallet        String?    @unique()
+  balance       Balance?
+  userProfile   UserProfile?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @default(now())
+  credits       Credit[]
+  debits        Debit[]
+  withdrawals   Withdraw[]
+  gamePlays     GamePlay[]
+  Affiliating   AffiliateLink[] @relation("inviting")
+  AffiliatedBy  AffiliateLink[] @relation("invited")
+}
+
+model UserProfile {
+  id                String     @id @default(uuid())
+  user              User       @relation(fields: [userId], references: [id])
+  userId            String     @unique
+  name              String     @unique
+  twitter           String?
+  discord           String?
+  experience        Int        @default(0)
+  balloonsBought    Int        @default(0)
+  rakePaid          BigInt     @default(0)
+  totalSolWagered   BigInt     @default(0)
+  gamesWon          Int        @default(0)
+  totalSolWon       BigInt     @default(0)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @default(now())
+}
+
+model AffiliateLink {
+  user              User          @relation("inviting", fields: [userId], references: [id])
+  userId            String        
+  invitedUser       User          @relation("invited", fields: [invitedUserId], references: [id])
+  invitedUserId     String        
+
+  @@id([userId, invitedUserId])
+}
+
+model Balance {
+  id          String     @id @default(uuid())
+  user        User       @relation(fields: [userId], references: [id])
+  userId      String     @unique // We'll have to drop this when we add more balance/coin types
+  type        String // Like sol or something
+  amount      BigInt
+  credits     Credit[]
+  debits      Debit[]
+  withdrawals Withdraw[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
+}
+
+model Credit {
+  id          String   @id @default(uuid())
+  amount      BigInt
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  balance     Balance  @relation(fields: [balanceId], references: [id])
+  balanceId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  type        String   @default("credit")
+  txSignature String?
+  confirmed   Boolean  @default(false)
+  game        Game?    @relation(fields: [gameId], references: [id])
+  gameId      Int?
+}
+
+model Debit {
+  id        String   @id @default(uuid())
+  amount    BigInt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  balance   Balance  @relation(fields: [balanceId], references: [id])
+  balanceId String
+  game      Game?    @relation(fields: [gameId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  gameId    Int?
+}
+
+model Withdraw {
+  id          String   @id @default(uuid())
+  amount      BigInt
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  balance     Balance  @relation(fields: [balanceId], references: [id])
+  balanceId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  txSignature String?
+  confirmed   Boolean  @default(false)
+}
+
+model Game {
+  id                     Int        @id @default(autoincrement())
+  processed              Boolean    @default(false)
+  numberOfBalloonsInGame Int?
+  winnerPayout           String?
+  housePayout            String?
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @default(now())
+  GamePlay               GamePlay[]
+  Debit                  Debit[]
+  Credit                 Credit[]
+}
+
+model GamePlay {
+  id                String @id @default(uuid())
+  user              User   @relation(fields: [userId], references: [id])
+  userId            String
+  game              Game   @relation(fields: [gameId], references: [id])
+  gameId            Int
+  balloonsBought    Int
+  balloonsRemaining Int
+}

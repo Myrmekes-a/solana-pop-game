@@ -1,0 +1,118 @@
+.game-tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0px;
+}
+
+@media (max-width: 991px) {
+    .game-tabs {
+        display: none;
+    }
+}
+
+.game-tabs .game-tab,
+.game-tabs .game-tab-active {
+    box-sizing: border-box;
+
+    width: 92px;
+    height: 92px;
+    margin: 1em;
+
+    background: rgba(38, 92, 133, 0.5);
+    box-shadow: inset 0px 3.67347px 13.7755px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6.88775px);
+
+    border-radius: 11px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.game-tabs .game-tab:hover,
+.game-tabs .game-tab-active:hover {
+    cursor: pointer !important;
+    background-color: rgba(38, 92, 133, 0.627);
+}
+
+.game-tab-active {
+    background-color: rgba(38, 92, 133, 0.836) !important;
+}
+
+.game-tabs li .image-div {
+    position: absolute;
+    width: 38.65px;
+    height: 49.59px;
+    left: 26.63px;
+    top: 9.18px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.game-tabs li .image-div.yellow {
+    background-image: url("../../assets/img/balloons/yellow_static.webp");
+}
+
+.game-tabs li .image-div.blue {
+    background-image: url("../../assets/img/balloons/blue_static.webp");
+}
+
+.game-tabs li .image-div.red {
+    background-image: url("../../assets/img/balloons/red_static.webp");
+}
+
+.game-tabs li .image-div.purple {
+    background-image: url("../../assets/img/balloons/purple_static.webp");
+}
+
+.game-tabs li .image-div.pink {
+    background-image: url("../../assets/img/balloons/pink_static.webp");
+}
+
+.game-tabs li .image-div.green {
+    background-image: url("../../assets/img/balloons/green_static.webp");
+}
+
+.game-tabs li .image-div.orange {
+    background-image: url("../../assets/img/balloons/orange_static.webp");
+}
+
+.game-tabs li .image-div.robot {
+    background-image: url("../../assets/img/balloons/robot_static.webp");
+}
+
+.game-tabs li .image-div.gradient {
+    background-image: url("../../assets/img/balloons/gradient_static.webp");
+}
+
+.game-tabs li .image-div.solana {
+    background-image: url("../../assets/img/balloons/solana_static.webp");
+}
+
+.game-tabs li p {
+    position: absolute;
+    width: 65px;
+    height: 23px;
+    left: 18.29px;
+    top: 60.61px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #ffffff;
+}
+
+.game-tabs-items {
+    padding-left: 0 !important;
+    list-style: none;
+}

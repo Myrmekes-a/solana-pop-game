@@ -1,0 +1,683 @@
+.arena {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+#board {
+    background: url("../../assets/img/wood_only_arena.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 935px;
+    height: 935px;
+    border-radius: 10px;
+    margin: 0 12px;
+    display: flex;
+    justify-self: center;
+    padding: 0 !important;
+}
+
+.betting-board {
+    z-index: 1;
+}
+
+#test {
+    width: 25px;
+    height: 25px;
+    background-color: blue;
+    position: relative;
+}
+
+#debug {
+    position: fixed;
+    z-index: 2;
+    bottom: 100px;
+    left: 180px;
+    color: white;
+}
+
+#debug-balloons {
+    color: white;
+    position: fixed;
+    bottom: 25px;
+    left: 700px;
+}
+
+.balloon {
+    background: url("../../assets/img/balloons/red_balloon.webp") center cover/center !important;
+}
+
+.round-transition-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+}
+
+.active-balloons {
+    box-sizing: border-box;
+
+    width: 695px;
+    height: 460px;
+
+    background: rgba(38, 92, 133, 0.7);
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+    margin: 1rem 3rem;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.active-balloons-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+
+    position: absolute;
+    width: 287px;
+    height: 380px;
+    left: 367.19px;
+    top: 40px;
+}
+
+/* Right column balloon one */
+
+.active-balloons-color {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 15px;
+
+    width: 263px;
+    height: 60px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.color-balloon {
+    width: 45px;
+    height: 60px;
+
+    background-image: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.robot-balloon {
+    background-image: url("../../assets/img/balloons/robot_static.webp");
+}
+
+.gradient-balloon {
+    background-image: url("../../assets/img/balloons/gradient_static.webp");
+}
+
+.solana-balloon {
+    background-image: url("../../assets/img/balloons/solana_static.webp");
+}
+
+.yellow-balloon {
+    background-image: url("../../assets/img/balloons/yellow_static.webp");
+}
+
+.blue-balloon {
+    background-image: url("../../assets/img/balloons/blue_static.webp");
+}
+
+.pink-balloon {
+    background-image: url("../../assets/img/balloons/pink_static.webp");
+}
+
+.purple-balloon {
+    background-image: url("../../assets/img/balloons/purple_static.webp");
+}
+
+.red-balloon {
+    background-image: url("../../assets/img/balloons/red_static.webp");
+}
+
+.green-balloon {
+    background-image: url("../../assets/img/balloons/green_static.webp");
+}
+
+.orange-balloon {
+    background-image: url("../../assets/img/balloons/orange_static.webp");
+}
+
+.active-balloons-color .player-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+
+    width: 203px;
+    height: 60px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .player-name {
+    width: 109px;
+    height: 24px;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    align-items: center;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    color: #ffffff;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .round-balloon-amount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 5px;
+    width: 203px;
+    height: 26px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .round-balloon-amount .amount-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 5px;
+
+    width: 25px;
+    height: 26px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .round-balloon-amount .amount-container p {
+    width: 25px;
+    height: 26px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .round-balloon-amount p.one {
+    width: 12px;
+    height: 26px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .round-balloon-amount p.two {
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .round-balloon-amount p.three {
+    width: 12px;
+    height: 26px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+}
+
+.active-balloons-color .player-information .round-balloon-amount p.four {
+    width: 95px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+}
+
+.active-balloons-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+
+    position: absolute;
+    width: 263px;
+    height: 380px;
+    left: 40px;
+    top: 40px;
+}
+
+.round-information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    width: 695px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.round-transition-information {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 21px;
+
+    width: 695px;
+    height: 128px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.round-starts {
+    box-sizing: border-box;
+
+    width: 337px;
+    height: 128px;
+
+    background: rgba(38, 92, 133, 0.7);
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.round-starts-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+
+    position: absolute;
+    width: 167px;
+    height: 68px;
+    left: 85px;
+    top: 30px;
+}
+
+.round-starts-container p.one {
+    width: 167px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.round-starts-container p.two {
+    width: 157px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2px;
+
+    color: #ffffff;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.odds-to-win {
+    box-sizing: border-box;
+
+    width: 337px;
+    height: 128px;
+
+    background: rgba(38, 92, 133, 0.7);
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.odds-to-win-container {
+    padding: 0px;
+    gap: 20px;
+
+    position: absolute;
+    width: 215px;
+    height: 68px;
+    left: 61px;
+    top: 30px;
+}
+
+.odds-to-win-container p.one {
+    width: 215px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.odds-to-win-container p.two {
+    height: 24px;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.success-screen {
+    box-sizing: border-box;
+    z-index: 100;
+    border: 1px solid #ffffff;
+    box-shadow: inset 0px 4px 15px rgb(0 0 0 / 35%);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.success-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.winner-name {
+    color: #6b00f9c7;
+}
+
+.total-jackpot {
+    box-sizing: border-box;
+
+    width: 695px;
+    margin: 1rem auto;
+    padding: 2rem 0;
+
+    background: rgba(38, 92, 133, 0.7);
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.total-jackpot .total-jackpot-title {
+    width: 140px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #ffffff;
+}
+
+.total-jackpot .total-jackpot-amount .sol-amount {
+    display: flex;
+    gap: 10px;
+}
+
+.total-jackpot .total-jackpot-amount .sol-amount p {
+    margin-bottom: 0;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 34px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.total-jackpot .total-jackpot-amount .sol-amount .solana-image {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.total-jackpot .sol-fee {
+    width: 155px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    color: #dddddd;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.players {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 0px;
+    margin-top: 10px;
+    gap: 14px;
+
+    width: 95px;
+    height: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.players .players-label {
+    width: 71px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.players .players-amount {
+    width: 19px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}

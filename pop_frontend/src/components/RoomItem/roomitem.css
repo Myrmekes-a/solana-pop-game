@@ -1,0 +1,90 @@
+.room-item {
+    box-sizing: border-box;
+
+    width: 120px;
+    height: 120px;
+    margin: 1em;
+    padding: 10px;
+
+    color: #ffffff;
+    background-color: rgba(38, 92, 133, 0.5);
+    box-shadow: inset 0px 3.67347px 13.7755px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6.88775px);
+
+    border-radius: 11px;
+}
+
+.room-item:hover {
+    cursor: pointer !important;
+    background-color: rgba(38, 92, 133, 0.627);
+}
+
+.room-item-active {
+    background-color: rgba(38, 92, 133, 0.836) !important;
+}
+
+.room-item .room-img {
+    margin: 0 auto;
+    width: 39px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.room-item .room-img.yellow {
+    background-image: url("../../assets/img/balloons/yellow_static.webp");
+}
+
+.room-item .room-img.blue {
+    background-image: url("../../assets/img/balloons/blue_static.webp");
+}
+
+.room-item .room-img.red {
+    background-image: url("../../assets/img/balloons/red_static.webp");
+}
+
+.room-item .room-img.purple {
+    background-image: url("../../assets/img/balloons/purple_static.webp");
+}
+
+.room-item .room-img.pink {
+    background-image: url("../../assets/img/balloons/pink_static.webp");
+}
+
+.room-item .room-img.green {
+    background-image: url("../../assets/img/balloons/green_static.webp");
+}
+
+.room-item .room-img.orange {
+    background-image: url("../../assets/img/balloons/orange_static.webp");
+}
+
+.room-item .room-img.robot {
+    background-image: url("../../assets/img/balloons/robot_static.webp");
+}
+
+.room-item .room-img.gradient {
+    background-image: url("../../assets/img/balloons/gradient_static.webp");
+}
+
+.room-item .room-img.solana {
+    background-image: url("../../assets/img/balloons/solana_static.webp");
+}
+
+.room-item .room-amount {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+
+    text-align: center;
+}
+
+.room-item .room-players {
+    text-align: center;
+}
+
+.room-item .room-full {
+    color: #dd525b;
+}

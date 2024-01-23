@@ -1,0 +1,81 @@
+// if (!this.darts1) {
+//     this.engine.fireDarts([
+//         {
+//             x: this.engine.worldWidth + 100,
+//             y: this.engine.worldHeight / 2,
+//             angle: 295,
+//         },
+//         {
+//             x: this.engine.worldWidth + 100,
+//             y: this.engine.worldHeight / 2,
+//             angle: 270,
+//         },
+//         {
+//             x: this.engine.worldWidth + 100,
+//             y: this.engine.worldHeight / 2,
+//             angle: 245,
+//         },
+//     ]);
+//     this.darts1 = true;
+// }
+// if (!this.darts2) {
+//     this.engine.fireDarts([
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 0,
+//         },
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 25,
+//         },
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 340,
+//         },
+//     ]);
+//     this.darts2 = true;
+// }
+// if (!this.darts3) {
+//     this.engine.fireDarts([
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 0,
+//         },
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 25,
+//         },
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 340,
+//         },
+//     ]);
+//     this.darts3 = true;
+// }
+
+// if (!this.darts4) {
+//     this.engine.fireDarts([
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 0,
+//         },
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 25,
+//         },
+//         {
+//             x: this.engine.worldWidth / 2,
+//             y: this.engine.worldHeight + 100,
+//             angle: 340,
+//         },
+//     ]);
+//     this.darts4 = true;
+// }

@@ -1,0 +1,1 @@
+export const ROOM_FULL_FILLED_ERROR = 4000;

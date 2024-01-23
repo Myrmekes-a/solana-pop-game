@@ -1,0 +1,824 @@
+.navbar {
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+input:active,
+input:focus {
+    border: none;
+    outline: none;
+}
+
+.unopened {
+    border-radius: 10px;
+}
+
+.opened {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.input-container button img {
+    height: 100%;
+}
+
+.input-container button img#confirmed-image {
+    filter: invert();
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.navbar-header {
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    width: -webkit-fill-available;
+}
+
+#wallet {
+    position: absolute;
+    right: 30px;
+}
+
+.logo-div {
+    max-width: 50px;
+}
+
+.logo-div div {
+    position: absolute;
+    width: 170px;
+    height: 60.25px;
+    left: 142px;
+    top: 20px;
+    background: url("../img/pop_logo.webp");
+    background-position: center;
+    background-size: cover;
+}
+
+.navbar-balance {
+    margin: auto;
+}
+
+.dropdown-arrow {
+    filter: invert();
+    height: 50%;
+    margin-left: auto;
+}
+
+.navbar-balance,
+.balance-div,
+.game-wallet {
+    z-index: 2;
+}
+
+.balance-div {
+    width: 20vw;
+    height: 40px;
+    border: none;
+    background-color: #15181d;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    top: 2vh;
+    left: 45vw;
+}
+
+.game-wallet {
+    position: absolute;
+    top: 2vh;
+    left: 65vw;
+    height: 38px;
+    border-radius: 5px;
+    border: none;
+    width: 50px;
+    margin-left: 10px;
+    background-color: #109bfe;
+    color: #ffffff;
+}
+
+.game-wallet:hover {
+    cursor: pointer;
+}
+
+.balance-div:hover,
+.dropdown-menu:hover {
+    cursor: pointer;
+}
+
+.balance-div img {
+    max-height: 70%;
+    margin-right: 2px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #15181d;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.dropdownItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #15181d;
+    color: white;
+    justify-content: flex-start;
+    height: 100%;
+    width: 19.5vw;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: all 0.5s;
+}
+
+.dropdownItem:hover {
+    opacity: 0.7;
+}
+
+.dropdownItem img {
+    max-height: 70%;
+    margin-right: 2px;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.dropdown-menu.inactive {
+    display: none;
+}
+
+.account-interface.active {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.2s ease;
+}
+
+.account-interface.inactive {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s ease;
+}
+
+.game-wallet {
+    position: absolute;
+    top: 2vh;
+    left: 65vw;
+    height: 38px;
+    border-radius: 5px;
+    border: none;
+    width: 50px;
+    margin-left: 10px;
+    background-color: #dd525b;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.account-interface-content {
+    box-sizing: border-box;
+    z-index: 100;
+    position: absolute;
+    width: 500px;
+    height: 234px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    background: #1a3c57;
+    border: 1px solid #ffffff;
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(15px);
+
+    border-radius: 12px;
+}
+
+.account-item-tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    position: absolute;
+    width: 401px;
+    height: 50px;
+    left: calc(50% - 401px / 2 + 0.5px);
+    top: 30px;
+}
+
+.account-item-tabs li.one {
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 24px;
+    gap: 10px;
+    width: 124px;
+    height: 50px;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    transition: none;
+}
+
+.account-item-tabs li.one p {
+    width: 76px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #f8f8ff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.account-item-tabs li.two {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 24px;
+    gap: 10px;
+
+    width: 151px;
+    height: 50px;
+
+    border-radius: 12px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    transition: none;
+}
+
+.account-item-tabs li.two p {
+    width: 103px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #f8f8ff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.account-item-tabs li.three {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 24px;
+    gap: 10px;
+
+    width: 126px;
+    height: 50px;
+
+    border-radius: 12px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    transition: none;
+}
+
+.account-item-tabs li.three p {
+    width: 78px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #f8f8ff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.tab-active {
+    background: linear-gradient(180deg, #dd525b 0%, #c03c3c 100%);
+    box-shadow: inset 0px -4px 0px #8c3232;
+    border-radius: 12px;
+}
+
+.account-item {
+    color: white;
+}
+
+.account-item-tabs li:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.deposit-item,
+.withdraw-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    width: 401px;
+    height: 84px;
+    left: calc(50% - 401px / 2 + 0.5px);
+    top: 120px;
+}
+
+.deposit-item .current-balance,
+.withdraw-item .current-balance {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    width: 187px;
+    height: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.deposit-item .current-balance p,
+.withdraw-item .current-balance p {
+    width: 111px;
+    height: 24px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.deposit-item .current-balance div,
+.withdraw-item .current-balance div {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    gap: 10px;
+    width: 66px;
+    height: 24px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.deposit-item .current-balance div div.solana-image,
+.withdraw-item .current-balance div div.solana-image {
+    width: 24px;
+    height: 24px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.deposit-item .current-balance div p,
+.withdraw-item .current-balance div p {
+    width: 32px;
+    height: 24px;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.deposit-item .input-container,
+.withdraw-item .input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    position: absolute;
+    left: 0;
+    top: 35px;
+    width: 401px;
+    height: 50px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.deposit-item .input-container input,
+.withdraw-item .input-container input {
+    width: 286px;
+    height: 50px;
+
+    background: #0f2536;
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 5px;
+    /* Inside auto layout */
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.76);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    border: none;
+}
+
+.deposit-item .input-container button,
+.withdraw-item .input-container button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 24px;
+    gap: 10px;
+    width: 115px;
+    height: 50px;
+    background: linear-gradient(180deg, #dd525b 0%, #c03c3c 100%);
+    box-shadow: inset 0px -4px 0px #8c3232;
+    border-radius: 0px 10px 10px 0px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: white;
+    border: none;
+}
+
+.container button {
+    background-color: #dd525b;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    margin-left: 5px;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.container button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.account-item table {
+    position: absolute;
+    top: 40%;
+    left: 18%;
+}
+
+th,
+td {
+    padding: 3px 12px;
+    font-size: 15px;
+}
+
+.wallet-adapter-button-trigger {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    background: linear-gradient(180deg, #534ab2 0%, #342c85 100%);
+    box-shadow: inset 0px -4px 0px #28216c;
+    border-radius: 12px;
+    justify-content: end;
+}
+
+.menu-toggle {
+    height: 50px;
+    padding: 10px;
+    filter: invert();
+
+    transition: 0.2s all;
+    z-index: 10;
+    margin-top: 2px;
+    opacity: 1;
+}
+
+.menu-toggle:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.menu-container {
+    box-sizing: border-box;
+    position: absolute;
+    width: 92px;
+    height: 60px;
+    left: 20px;
+    top: 20px;
+
+    background: rgba(38, 92, 133, 0.5);
+    box-shadow: inset 0px 3.67347px 13.7755px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6.88775px);
+    border-radius: 11px;
+    cursor: pointer;
+}
+
+.account {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+
+    width: 336px;
+    height: 60px;
+}
+
+.wallet-container {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 24px;
+    gap: 10px;
+
+    width: 106px;
+    height: 60px;
+
+    background: linear-gradient(180deg, #dd525b 0%, #c03c3c 100%);
+    box-shadow: inset 0px -4px 0px #8c3232;
+    border-radius: 12px 0px 0px 12px;
+    border: none;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.wallet-container:hover {
+    cursor: pointer;
+}
+
+.wallet-container p {
+    width: 58px;
+    height: 34px;
+
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    /* or 133% */
+
+    display: flex;
+    align-items: center;
+
+    color: #f8f8ff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.balance-container {
+    box-sizing: border-box;
+
+    width: 230px;
+    height: 60px;
+
+    background: rgba(38, 92, 133, 0.5);
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(7.5px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 0px 12px 12px 0px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.expand-arrow {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 15px;
+    top: calc(35% - 7px / 2 - 0.5px);
+    background: url("../img/dropdown_arrow.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: invert();
+}
+
+.balance {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    width: 79px;
+    height: 32px;
+    left: 15px;
+    top: calc(50% - 32px / 2);
+}
+
+.solana-image {
+    width: 32px;
+    height: 32px;
+    background: url("../img/solana_image_transparent.webp");
+    /* Inside auto layout */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.balance p {
+    width: 37px;
+    height: 24px;
+    padding-top: 5px;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #f8f8ff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.modals.inactive {
+    opacity: 0;
+    visibility: none;
+}
+
+.modal-content {
+    border: none;
+    background: transparent;
+}
+
+.menu-list {
+    background: #1a3c57;
+    border: 1px solid #ffffff;
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 30px 50px;
+    gap: 20px;
+    width: 320px;
+    height: 340px;
+    margin: auto;
+}
+
+.signup-container {
+    background: #1a3c57;
+    border: 1px solid #ffffff;
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 42px 50px 30px;
+    gap: 15px;
+}
+
+.h-12 {
+    height: 48px;
+}
+
+.closeBtn {
+    top: -50px;
+    right: 40px;
+    cursor: pointer;
+}
+
+.common-red-bg {
+    background: linear-gradient(180deg, #dd525b 0%, #c03c3c 100%);
+    box-shadow: inset 0px -4px 0px #8c3232;
+    border-radius: 12px;
+    padding: 13px 24px 16px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    width: 100%;
+}
